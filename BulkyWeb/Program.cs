@@ -38,11 +38,12 @@ builder.Services.AddSession(options => {
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-
+builder.Services.AddTransient<IEmailSender>(s => new EmailSender("smtp.gmail.com", 587, "noreply2127456@gmail.com", "iaipmnujrpjbwuqf"));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IEmailSender, EmailSender>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
